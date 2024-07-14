@@ -1,9 +1,11 @@
-import { Lucia } from "lucia";
-import { dev } from "$app/environment";
-import { GitHub } from "arctic";
-import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from "$env/static/private";
-import { adapter } from "./adapter";
-
+import { Lucia } from 'lucia';
+import { dev } from '$app/environment';
+import { GitHub } from 'arctic';
+import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from '$env/static/private';
+import { DrizzlePostgreSQLAdapter } from '@lucia-auth/adapter-drizzle';
+import { sessionTable, userTable } from './schema';
+import { db } from './db';
+const adapter = new DrizzlePostgreSQLAdapter(db, sessionTable, userTable);
 export const lucia = new Lucia(adapter, {
 	sessionCookie: {
 		attributes: {
@@ -19,7 +21,7 @@ export const lucia = new Lucia(adapter, {
 	}
 });
 
-declare module "lucia" {
+declare module 'lucia' {
 	interface Register {
 		Lucia: typeof lucia;
 		DatabaseUserAttributes: DatabaseUserAttributes;

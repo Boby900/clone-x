@@ -3,7 +3,7 @@
 <h2 class="text-2xl text-teal-600 font-extrabold text-center">this thing is weirdo</h2>
 
 <script lang="ts">
-	import { enhance } from "$app/forms";
+	import { enhance } from "$app/forms";   
 </script>
 
 <form method="post" use:enhance>

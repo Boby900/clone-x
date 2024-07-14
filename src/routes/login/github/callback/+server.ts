@@ -1,9 +1,9 @@
 import { OAuth2RequestError } from 'arctic';
 import { generateIdFromEntropySize } from 'lucia';
 import { github, lucia } from '$lib/server/auth';
-import { db } from '../../../../db/db';
+import { db } from '../../../../lib/server/db';
 import type { RequestEvent } from '@sveltejs/kit';
-import { userTable } from '../../../../db/schema';
+import { userTable } from '../../../../lib/server/schema';
 import { eq } from 'drizzle-orm';
 
 export async function GET(event: RequestEvent): Promise<Response> {
