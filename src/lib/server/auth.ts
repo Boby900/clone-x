@@ -2,7 +2,7 @@ import { Lucia } from "lucia";
 import { dev } from "$app/environment";
 import { GitHub } from "arctic";
 import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from "$env/static/private";
-
+import { adapter } from "./adapter";
 
 export const lucia = new Lucia(adapter, {
 	sessionCookie: {

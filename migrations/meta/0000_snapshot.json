@@ -1,11 +1,11 @@
 {
-  "id": "a6072392-5c9b-4e85-95c3-3e12ee34b576",
+  "id": "3a2965a4-2e6c-4ffa-b3c3-58a0a869f3fb",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.users_post": {
-      "name": "users_post",
+    "public.posts": {
+      "name": "posts",
       "schema": "",
       "columns": {
         "id": {
@@ -45,13 +45,55 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.user_tab": {
-      "name": "user_tab",
+    "public.session": {
+      "name": "session",
       "schema": "",
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "session_user_id_user_id_fk": {
+          "name": "session_user_id_user_id_fk",
+          "tableFrom": "session",
+          "tableTo": "user",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.user": {
+      "name": "user",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
           "primaryKey": true,
           "notNull": true
         },
@@ -72,8 +114,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "user_tab_github_id_unique": {
-          "name": "user_tab_github_id_unique",
+        "user_github_id_unique": {
+          "name": "user_github_id_unique",
           "nullsNotDistinct": false,
           "columns": [
             "github_id"

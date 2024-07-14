@@ -1,12 +1,12 @@
 import { integer, pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core';
 
-export const usersTable = pgTable('user_tab', {
-  id: serial('id').primaryKey(),
+export const userTable = pgTable('user', {
+  id: text("id").primaryKey(),
   github_id: integer('github_id').notNull().unique(),
   username: text('username').notNull(),
 });
 
-export const postsTable = pgTable('users_post', {
+export const postsTable = pgTable('posts', {
   id: serial('id').primaryKey(),
   title: text('title').notNull(),
   content: text('content').notNull(),
@@ -15,9 +15,20 @@ export const postsTable = pgTable('users_post', {
     .notNull()
     .$onUpdate(() => new Date()),
 });
+export const sessionTable = pgTable("session", {
+	id: text("id").primaryKey(),
+	userId: text("user_id")
+		.notNull()
+		.references(() => userTable.id),
+	expiresAt: timestamp("expires_at", {
+		withTimezone: true,
+		mode: "date"
+	}).notNull()
+});
 
-export type InsertUser = typeof usersTable.$inferInsert;
-export type SelectUser = typeof usersTable.$inferSelect;
 
-export type InsertPost = typeof postsTable.$inferInsert;
-export type SelectPost = typeof postsTable.$inferSelect;
+export interface DatabaseUser {
+	id: string;
+	username: string;
+	github_id: number;
+}
