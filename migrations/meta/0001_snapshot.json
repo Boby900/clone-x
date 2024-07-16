@@ -1,6 +1,6 @@
 {
-  "id": "71264748-001f-4973-b61d-20be6ddc9ef6",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "dab46793-c7ef-4e00-9199-0028ec45c86a",
+  "prevId": "71264748-001f-4973-b61d-20be6ddc9ef6",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -101,7 +101,7 @@
           "name": "github_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "username": {
           "name": "username",

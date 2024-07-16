@@ -1,0 +1,1 @@
+ALTER TABLE "user" ALTER COLUMN "github_id" DROP NOT NULL;

@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"id" text PRIMARY KEY NOT NULL,
 	"github_id" integer NOT NULL,
 	"username" text NOT NULL,
+	"password_hash" text NOT NULL,
 	CONSTRAINT "user_github_id_unique" UNIQUE("github_id")
 );
 --> statement-breakpoint
