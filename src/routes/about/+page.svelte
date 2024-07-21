@@ -1,1 +1,1 @@
-<div class="text-purple-800 text-center text-3xl font-bold ">An about page</div>
+<div class="text-purple-800 text-center text-3xl font-bold">An about page</div>
